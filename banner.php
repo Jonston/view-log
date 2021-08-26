@@ -132,7 +132,7 @@ function getRequestData(): array
         'ip_address' => $_SERVER['REMOTE_ADDR'],
         'user_agent' => $_SERVER['HTTP_USER_AGENT'],
         'view_date' => (new DateTime())->format('Y-m-d h:i:s'),
-        'page_url' => $_SERVER['REQUEST_URI'],
+        'page_url' => $_SERVER['HTTP_REFERER'],
     ];
 }
 
@@ -155,6 +155,7 @@ function writeLog()
 }
 
 try {
+    //echo '<pre>'; print_r($_SERVER); echo '</pre>';
     viewImage('banner.jpg');
     writeLog();
 } catch (Exception $exception) {
